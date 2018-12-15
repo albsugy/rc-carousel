@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 
 import Slide from '../components/Slide/Slide'
 import Arrow from '../components/Arrow/Arrow'
+import Wrapper from '../components/Wrapper/Wrapper'
+
 import { loadPhotos } from '../actions/index'
 
 class Carousel extends Component {
@@ -43,21 +45,14 @@ class Carousel extends Component {
     const { photos, status } = this.props
     const currentIndex = photos.indexOf(currentSlide)
 
+    const SlidesList = photos.map(slide => <Slide key={slide.id} slides={photos} slide={slide} />)
     return (
       <div>
         { status === 'DONE' & photos.length > 0 
           ? 
-          <div className="col">
-              <div className={`slides-slider active-slide-${currentIndex}`}>
-                <div className="slides-slider-wrapper" style={{
-                  'transform': `translateX(-${currentIndex*(100 / photos.length)}%)`
-                }}>
-                  {
-                    photos.map(slide => <Slide key={slide.id} slides={photos} slide={slide} />)
-                  }
-                </div>
-              </div>
-            </div>
+          <Wrapper currentIndex={currentIndex} count={photos.length}>
+            { SlidesList }
+          </Wrapper>
           : <div className="col">Loading...</div>
         }
 
