@@ -1,5 +1,4 @@
-# Geo Location App
-ReactJS, Redux and LeafletJS Geo location App.
+# React Carousel
 
 ## Live demo
 
